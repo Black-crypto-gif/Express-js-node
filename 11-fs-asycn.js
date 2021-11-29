@@ -1,4 +1,8 @@
-const { readFile, writeFile } = require('fs');
+const {
+    readFile,
+    writeFile
+} = require('fs');
+
 console.log('Before');
 
 readFile('./content/first.txt', 'utf8', (err, result) => {
@@ -15,7 +19,9 @@ readFile('./content/first.txt', 'utf8', (err, result) => {
             console.log(result);
         }
         const second = result;
-        writeFile('./content/merged2.txt', `here is the rsult : ${first},${second}`, { flag: 'a' }, (err, result) => {
+        writeFile('./content/merged2.txt', `here is the rsult : ${first},${second}`, {
+            flag: 'a'
+        }, (err, result) => {
             if (err) {
                 console.log(err);
             } else {

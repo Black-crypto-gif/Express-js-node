@@ -1,14 +1,33 @@
-// npm - global command, comes with node
-// npm --version
+const { readFile, writeFile } = require('fs').promises
+/* const util = require('util');
+const readFilePromise = util.promisify(readFile);
+const writeFilePromise = util.promisify(writeFile); */
 
-// local dependencies -use it only in this particular file
-// npm i <package name>
-// global dependencies - use it in all files
-// npm i -g <package name>
+const start = async () => {
+    try {
+        const text = await readFile('./content/first.txt', 'utf8');
+        const text2 = await writeFile('./content/second.txt', text);
+        await writeFilePromise('./content/third.txt', `THIS IS AWESOME:${first} ${second}`, { flag: 'a' });
+        console.log(first,second);
+        
+    } catch (err) {
+        console.log(err);
+    }
 
-const _ = require('lodash');
+}
+start();
+/* const getText = (path) => {
+    return new Promise((resolve, reject) => {
+        readFile(path,'utf8' ,(err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        })
+    })
+} */
 
-const items = [ 1, [2,[3,[4]]]];
+/* getText('./content/first.txt').then(result => console.log(result) 
+).catch(err => console.log(err)); */
 
-const newItems = _.flattenDeep(items);
-console.log(newItems);
