@@ -3,7 +3,7 @@ const app = express()
 let { people } = require('./data')
 
 // static assets
-app.use(express.static('./methods-public'))
+app.use(express.static('methods-public'))
 // parse form data
 app.use(express.urlencoded({ extended: false }))
 // parse json
@@ -75,6 +75,6 @@ app.delete('/api/people/:id', (req, res) => {
   return res.status(200).json({ success: true, data: newPeople })
 })
 
-app.listen(5000, () => {
-  console.log('Server is listening on port 5000....')
+app.listen(8080, () => {
+  console.log('Server is listening on port 8080....')
 })

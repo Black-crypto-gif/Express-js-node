@@ -1,30 +1,19 @@
-const express = require('express');
-const path = require('path');
-const app = express();
+const express = require('express')
+const app = express()
 
-//setup static middleware : to serve static files:
+const people = require('./routes/people')
+const auth = require('./routes/auth')
 
-app.use(express.static('./public'));
+// static assets
+app.use(express.static('methods-public'))
+// parse form data
+app.use(express.urlencoded({ extended: false }))
+// parse json
+app.use(express.json())
 
+app.use('/api/people', people);
+app.use('/login', auth);
 
-app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './navbar-app/index.html'));
+app.listen(5000, () => {
+  console.log('Server is listening on port 5000....')
 })
-
-app.all('*', (req, res) => {
-    res.status(404).send('404 Not Found');
-})
-
-app.listen(8080,()=>{
-    console.log("server is running");
-})
-
-
-
-//app.get
-//app.post
-//app.put
-//app.delete
-//app.all
-//app.use
-//app.listen
